@@ -19,7 +19,7 @@
                     <template for:each={weatherInfoData} for:item="weatherInfo">
                         <div key={weatherInfo.id} class="slds-grid slds-wrap">
                             <!-- Weather Icon -->
-                            <div class="slds-col slds-size_6-of-12">
+                            <div if:true={weatherInfo.iconUrl} class="slds-col slds-size_6-of-12">
                                 <div class="slds-align_absolute-center icon-background">
                                     <div class="slds-media__figure">
                                         <img alt="weatherIcon" src={weatherInfo.iconUrl} title="Weather icon" />
@@ -63,13 +63,28 @@
     </template>
 
     <template if:false={hasData}>
-        <!-- Loading Message -->
-        <div class="slds-card">
+        <!-- No Data Message -->
+        <div class="slds-card" style="padding:0.5rem;background:#16325c">
             <div class="slds-card__header slds-grid">
                 <header class="slds-media slds-media_center slds-has-flexi-truncate">
                     <div class="slds-media__body slds-align_absolute-center header-background">
                         <h2 class="slds-card__header-title slds-text-color_inverse">
-                            <span>Loading...</span>
+                            <span>No Weather Data...</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </template>
+
+    <!-- Error Message when no data is available -->
+    <template if:true={error}>
+        <div class="slds-card" style="padding:0.5rem;background:#16325c">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body slds-align_absolute-center header-background">
+                        <h2 class="slds-card__header-title slds-text-color_inverse">
+                            <span>{error.message}</span>
                         </h2>
                     </div>
                 </header>
