@@ -31,15 +31,17 @@
         <members>newTaskModal</members>
         <name>LightningComponentBundle</name>
     </types>
-
-    <types>
-        <members>openweathermap.remoteSite</members>
+     <types>
+        <members>openweathermapMeta__mdt</members> 
+        <name>CustomObject</name>
+    </types>
+        <types>
+        <members>openweathermap</members>
         <name>RemoteSiteSetting</name>
     </types>
-
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
+         <types>
+        <members>openweathermap</members>
+        <name>NamedCredential</name>
     </types>
 
     <version>59.0</version>
