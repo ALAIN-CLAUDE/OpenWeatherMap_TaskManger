@@ -20,15 +20,28 @@
     </types>
 
     <types>
-    <members>LocationTrigger</members>
+        <members>LocationTrigger</members>
         <name>ApexTrigger</name>
     </types>
 
     <types>
+        <members>customTaskDatatable</members>
+        <members>customTypeGlobal</members>
         <members>locationWeatherDisplay</members>
+        <members>newTaskModal</members>
         <name>LightningComponentBundle</name>
     </types>
-    
+
+    <types>
+        <members>openweathermap.remoteSite</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+
+    <types>
+        <members>OpenWeatherMapMeta</members> <!-- Replace with the actual name of your custom metadata type -->
+        <name>CustomObject</name>
+    </types>
+
     <types>
         <members>*</members>
         <name>StaticResource</name>
