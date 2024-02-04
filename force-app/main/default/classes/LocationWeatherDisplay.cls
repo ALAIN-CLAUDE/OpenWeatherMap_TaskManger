@@ -1,10 +1,11 @@
 /**
  * @description       : 
- * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @author            : alainclaudebe@outlook.com
  * @group             : 
- * @last modified on  : 02-03-2024
- * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @last modified on  : 04-02-2024
+ * @last modified by  : alainclaudebe@outlook.com
 **/
+
 public with sharing class LocationWeatherDisplay {
     @AuraEnabled(cacheable=true)
     public static List<WeatherInfo__c> getLocationWeatherInfo(Id locationId) {
