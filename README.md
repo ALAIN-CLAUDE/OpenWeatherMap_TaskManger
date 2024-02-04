@@ -34,7 +34,8 @@ The Task Manager Lightning Web Component is a Salesforce component designed to h
 
 ## Technical Documentation
 
-For detailed technical information, including code snippets and design choices, refer to the [Technical Documentation](link/to/technical/documentation.md).
+For detailed technical information, including code snippets and design choices, refer to the [OpenWeatherMap API Documentation.docx](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/files/14158486/OpenWeatherMap.API.Documentation.docx)
+.
 
 ## Testing
 
