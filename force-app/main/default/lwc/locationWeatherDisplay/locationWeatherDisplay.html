@@ -1,9 +1,9 @@
 <!-- WeatherInfoDisplay.html -->
 <template>
     <template if:true={hasData}>
-        <div class="slds-card" style="border: 2px solid #16325c;background:#f8f8f8">
+        <div class="slds-card bck-1">
             <!-- Header -->
-            <div class="slds-card__header slds-grid" style="padding:0.5rem;background:#16325c">
+            <div class="slds-card__header slds-grid bck">
                 <header class="slds-media slds-media_center slds-has-flexi-truncate">
                     <div class="slds-media__body slds-align_absolute-center header-background">
                         <h2 class="slds-card__header-title slds-text-color_inverse">
@@ -14,7 +14,7 @@
             </div>
 
             <!-- Body -->
-            <div class="slds-card__body slds-card__body_inner" style="padding:0.5rem;background:#16325c">
+            <div class="slds-card__body slds-card__body_inner bck">
                 <div class="slds-box">
                     <template for:each={weatherInfoData} for:item="weatherInfo">
                         <div key={weatherInfo.id} class="slds-grid slds-wrap">
@@ -50,7 +50,7 @@
             <!-- Footer -->
             <footer class="slds-card__footer">
                 <template for:each={weatherInfoData} for:item="weatherInfo">
-                    <div key={weatherInfo.id} class="slds-grid slds-wrap footer-background" style="padding:0.5rem;background:#16325c">
+                    <div key={weatherInfo.id} class="slds-grid slds-wrap footer-background bck">
                         <div class="slds-col slds-size_12-of-12">
                             <div class="slds-text-color_inverse-weak slds-align_absolute-center">
                                 Description: {weatherInfo.Description}
@@ -64,7 +64,7 @@
 
     <template if:false={hasData}>
         <!-- No Data Message -->
-        <div class="slds-card" style="padding:0.5rem;background:#16325c">
+        <div class="slds-card bck">
             <div class="slds-card__header slds-grid">
                 <header class="slds-media slds-media_center slds-has-flexi-truncate">
                     <div class="slds-media__body slds-align_absolute-center header-background">
@@ -79,7 +79,7 @@
 
     <!-- Error Message when no data is available -->
     <template if:true={error}>
-        <div class="slds-card" style="padding:0.5rem;background:#16325c">
+        <div class="slds-card bck">
             <div class="slds-card__header slds-grid">
                 <header class="slds-media slds-media_center slds-has-flexi-truncate">
                     <div class="slds-media__body slds-align_absolute-center header-background">
