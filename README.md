@@ -1,7 +1,8 @@
 # OpenWeatherMap_TaskManger
 This repository holds implementation for integrating salesforce with OpenWeatherMap api and TaskManager LWCs
 # Task Manager Lightning Web Component
-![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/4d9c653e-b7be-4447-9aa4-3f958cc8b815)
+![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/94ddc055-3724-4a55-ac58-22740c1d2f98)
+
 
 ## Overview
 
@@ -34,7 +35,8 @@ The Task Manager Lightning Web Component is a Salesforce component designed to h
 
 ## Technical Documentation
 
-For detailed technical information, including code snippets and design choices, refer to the [OpenWeatherMap API Documentation.docx](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/files/14158486/OpenWeatherMap.API.Documentation.docx)
+For detailed technical information, including code snippets and design choices, refer to the [Task Manager Technical Documentation.pdf](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/files/14158515/Task.Manager.Technical.Documentation.pdf)
+
 .
 
 ## Testing
@@ -49,7 +51,8 @@ For detailed technical information, including code snippets and design choices, 
 ---
 
 # OpenWeatherMap Integration
-![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/4cc893af-087d-4a7e-b330-476403d592bd)
+![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/5b0ce13d-82a8-490a-be78-70eef7027884)
+
 
 ## Overview
 
@@ -80,7 +83,8 @@ The OpenWeatherMap Integration is a Salesforce solution that fetches real-time w
 
 ## Technical Documentation
 
-For detailed technical information, including code snippets, class details, and integration configurations, refer to the [Technical Documentation](link/to/technical/documentation.md).
+For detailed technical information, including code snippets, class details, and integration configurations, refer to the [OpenWeatherMap API Documentation.docx](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/files/14158486/OpenWeatherMap.API.Documentation.docx)
+.
 
 ## Testing
 
