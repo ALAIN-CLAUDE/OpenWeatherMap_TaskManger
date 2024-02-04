@@ -1,3 +1,11 @@
+/**
+ * @description       : 
+ * @author            : alainclaudebe@outlook.com
+ * @group             : 
+ * @last modified on  : 04-02-2024
+ * @last modified by  : alainclaudebe@outlook.com
+**/
+
 public class LocationTriggerHandler {
 
     public static void handleTrigger(List<Location__c> newLocations, Map<Id, Location__c> oldLocationMap, System.TriggerOperation operation) {
