@@ -1,0 +1,73 @@
+<!-- customtaskDatatable.html -->
+
+<template>
+    <!-- header -->
+    <div class="slds-card" >
+
+        <!-- Header Section with success background color -->
+        <div class="slds-card__header slds-theme_success slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-task" title="Task Manager">
+                        <lightning-icon icon-name="standard:task2"
+                            alternative-text="Task Items" title="Task Items"></lightning-icon>
+                        <span class="slds-assistive-text">Task Manager</span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <a href="#" class="slds-card__header-link slds-truncate" title="Task Manager">
+                            <span>Task Manager</span>
+                        </a>
+                    </h2>
+                </div>
+            </header>
+            <div class="slds-no-flex">
+                <div class="slds-page-header__controls">
+                    <ul class="slds-button-group-list">
+                        <li>
+                            <lightning-button variant="Neutral" label="New" title="New"
+                                onclick={handleNewButton}></lightning-button>
+                        </li>
+                        <li>
+                            <lightning-button variant="Neutral" label="Bulk Task Complete"
+                                title="Bulk Task Complete" onclick={handleSelectedRows} slot="actions"
+                                icon-name="utility:check">
+                            </lightning-button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Datatable Section -->
+        <template if:false={data}>
+            <div class="slds-card__body slds-card__body_inner">
+                <!-- spinner -->
+                <div if:true={showSpinner}>
+                    <lightning-spinner alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </div>
+                <!---/spinner -->
+
+                <c-new-task-modal if:true={showNewTaskModal} oncancel={handleCancelNewTaskModal}
+                    onsave={handleSaveNewTaskModal} picklist-options={wiredTaskPriorityPicklist}>
+                </c-new-task-modal>
+                <c-custom-type-global key-field="Id" data={wiredTasksResult} columns={columns}
+                    onvalueselect={handleSelection} draft-values={draftValues} oncellchange={handleCellChange}
+                    selected-rows={selectedRows} onrowselection={handleRowSelection} onsave={handleSave}
+                    oncancel={handleCancel} show-row-number-column sorted-by={sortedBy}
+                    sorted-direction={sortedDirection} onsort={handleSort}>
+                </c-custom-type-global>
+            </div>
+            <div slot="footer" align="center" style="margin: 11px;">
+                <a onclick={handleViewAll}>
+                    <span class="view-all-label">
+                        View More
+                        <span class="assistiveText">Task</span>
+                    </span>
+                </a>
+            </div>
+        </template>
+    </div>
+</template>

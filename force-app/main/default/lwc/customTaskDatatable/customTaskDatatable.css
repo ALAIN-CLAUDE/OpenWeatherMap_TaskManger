@@ -1,0 +1,15 @@
+.cardSpinner{
+    position: relative;
+}
+
+/* Style for the slds-card */
+.slds-card {
+    border: 1px solid rgb(209, 208, 208);
+    border-radius: 4px;
+
+}
+
+/* Increase header size */
+.slds-card__header {
+    padding: 1rem; 
+}
