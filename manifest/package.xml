@@ -38,11 +38,6 @@
     </types>
 
     <types>
-        <members>OpenWeatherMapMeta</members> <!-- Replace with the actual name of your custom metadata type -->
-        <name>CustomObject</name>
-    </types>
-
-    <types>
         <members>*</members>
         <name>StaticResource</name>
     </types>
