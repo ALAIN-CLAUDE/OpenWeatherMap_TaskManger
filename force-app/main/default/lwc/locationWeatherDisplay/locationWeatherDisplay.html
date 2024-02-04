@@ -1,0 +1,79 @@
+<!-- WeatherInfoDisplay.html -->
+<template>
+    <template if:true={hasData}>
+        <div class="slds-card" style="border: 2px solid #16325c;background:#f8f8f8">
+            <!-- Header -->
+            <div class="slds-card__header slds-grid" style="padding:0.5rem;background:#16325c">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body slds-align_absolute-center header-background">
+                        <h2 class="slds-card__header-title slds-text-color_inverse">
+                            <span>{LocationName}</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+
+            <!-- Body -->
+            <div class="slds-card__body slds-card__body_inner" style="padding:0.5rem;background:#16325c">
+                <div class="slds-box">
+                    <template for:each={weatherInfoData} for:item="weatherInfo">
+                        <div key={weatherInfo.id} class="slds-grid slds-wrap">
+                            <!-- Weather Icon -->
+                            <div class="slds-col slds-size_6-of-12">
+                                <div class="slds-align_absolute-center icon-background">
+                                    <div class="slds-media__figure">
+                                        <img alt="weatherIcon" src={weatherInfo.iconUrl} title="Weather icon" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Temperature Info -->
+                            <div class="slds-col slds-size_6-of-12 info-background slds-text-color_inverse">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span>Temperature: {weatherInfo.temperatureCelsius} °C</span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span>Feels Like: {weatherInfo.Feels_Like} °C</span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span>Maximum Temperature: {weatherInfo.Maximum_Temperature} °C</span>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1">
+                                    <span>Minimum Temperature: {weatherInfo.Minimum_Temperature} °C</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="slds-card__footer">
+                <template for:each={weatherInfoData} for:item="weatherInfo">
+                    <div key={weatherInfo.id} class="slds-grid slds-wrap footer-background" style="padding:0.5rem;background:#16325c">
+                        <div class="slds-col slds-size_12-of-12">
+                            <div class="slds-text-color_inverse-weak slds-align_absolute-center">
+                                Description: {weatherInfo.Description}
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </footer>
+        </div>
+    </template>
+
+    <template if:false={hasData}>
+        <!-- Loading Message -->
+        <div class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body slds-align_absolute-center header-background">
+                        <h2 class="slds-card__header-title slds-text-color_inverse">
+                            <span>Loading...</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </template>
+</template>
