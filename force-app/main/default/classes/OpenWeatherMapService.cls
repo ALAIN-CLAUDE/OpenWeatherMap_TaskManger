@@ -2,8 +2,8 @@
  * @description       : 
  * @author            : alainclaudebe@outlook.com
  * @group             : 
- * @last modified on  : 04-02-2024
- * @last modified by  : alainclaudebe@outlook.com
+ * @last modified on  : 02-04-2024
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 
 public class OpenWeatherMapService {
@@ -12,7 +12,7 @@ public class OpenWeatherMapService {
         public Double lat;
         public Double lon;
         public Id locationId;
-        
+
         public LocationData(Double lat, Double lon, Id locationId) {
             this.lat = lat;
             this.lon = lon;
@@ -26,7 +26,7 @@ public class OpenWeatherMapService {
             List<LocationData> locationDataList = (List<LocationData>) JSON.deserialize(locationDataListString, List<LocationData>.class);
             getWeatherInfoHelper(locationDataList);
         } catch (Exception ex) {
-            System.debug('An exception occurred: ' + ex.getMessage());
+
         }
     }
 
@@ -44,11 +44,10 @@ public class OpenWeatherMapService {
 
                     if (response.getStatusCode() == 200) {
                         OpenWeatherMapApiResponse weatherData = (OpenWeatherMapApiResponse) JSON.deserialize(response.getBody(), OpenWeatherMapApiResponse.class);
-                        System.debug('weatherData: ' + JSON.serializePretty(weatherData));
+
                         weatherInfoList.add(createWeatherInfoRec(weatherData, locationData.locationId));
                     } else {
-                        System.debug('HTTP Request failed with status code: ' + response.getStatusCode());
-                        System.debug('Response body: ' + response.getBody());
+
                     }
                 }
 
@@ -57,7 +56,7 @@ public class OpenWeatherMapService {
                 }
             }
         } catch (Exception ex) {
-            System.debug('An exception occurred: ' + ex.getMessage());
+
         }
     }
 
@@ -75,14 +74,14 @@ public class OpenWeatherMapService {
     public static String ConvertToCelsius(Double Kelvin) {
         String tempCelsius = String.valueOf(Kelvin - 273.15);
         if(String.isNotBlank(tempCelsius)){
-            return tempCelsius;   
+            return tempCelsius;
         }
-        return ''; 
+        return '';
     }
 
     public static WeatherInfo__c createWeatherInfoRec(OpenWeatherMapApiResponse weatherData, Id locationId) {
         WeatherInfo__c weatherInfo = new WeatherInfo__c();
-        
+
         if (locationId != null) {
             weatherInfo.Name = weatherData.name+' Weather';
             weatherInfo.Temperature__c = ConvertToCelsius(weatherData.main.temp);
@@ -93,7 +92,7 @@ public class OpenWeatherMapService {
             weatherInfo.Feels_Like__c = ConvertToCelsius(weatherData.main.feels_like);
             weatherInfo.Icon__c = (weatherData.weather != null && weatherData.weather[0].icon != null) ? weatherData.weather[0].icon : '';
         }
-        
+
         return weatherInfo;
     }
 
@@ -102,7 +101,6 @@ public class OpenWeatherMapService {
         if (metadata != null) {
             return metadata.apiKey__c;
         } else {
-            System.debug('Custom Metadata Type record not found for API key.');
             return null;
         }
     }
