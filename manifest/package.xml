@@ -33,6 +33,8 @@
     </types>
      <types>
         <members>openweathermapMeta__mdt</members> 
+        <members>Location__c</members> 
+        <members>WeatherInfo__c</members> 
         <name>CustomObject</name>
     </types>
         <types>
