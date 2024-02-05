@@ -3,7 +3,6 @@
  * @author            : alainclaudebe@outlook.com
  * @group             : 
  * @last modified on  : 02-05-2024
- * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 
 global class OpenWeatherMapBatch implements Database.Batchable<SObject>, Database.AllowsCallouts {
