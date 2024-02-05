@@ -3,8 +3,8 @@ This repository holds implementation for integrating salesforce with OpenWeather
 # Task Manager Lightning Web Component
 ![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/94ddc055-3724-4a55-ac58-22740c1d2f98)
 
+https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/8c14d09d-4f74-4b99-9f45-e67d398f1825
 
-https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/f76d1420-66e3-441b-a00d-ea5a3a6c639d
 
 
 ## Overview
