@@ -1,17 +1,28 @@
-import { LightningElement, wire, track } from 'lwc';
-import { refreshApex } from '@salesforce/apex';
+import {LightningElement,wire,track} from 'lwc';
+import {refreshApex} from '@salesforce/apex';
 import getTasks from '@salesforce/apex/TaskController.getTasks';
 import getTaskStatusPicklistValues from '@salesforce/apex/TaskController.getTaskStatusPicklistValues';
 import getTaskPriorityPicklistValues from '@salesforce/apex/TaskController.getTaskPriorityPicklistValues';
 import updateTaskStatusToCompleted from '@salesforce/apex/TaskController.updateTaskStatusToCompleted';
 import updateTasksInlineEdit from '@salesforce/apex/TaskController.updateTasksInlineEdit';
 import createTask from '@salesforce/apex/TaskController.createTask';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { NavigationMixin } from "lightning/navigation";
+import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+import {NavigationMixin} from "lightning/navigation";
 
-const cols = [
-    { label: 'Subject', fieldName: 'Subject', type: 'text', sortable: true, editable: true },
-    { label: 'Due Date', fieldName: 'ActivityDate', type: 'Date', type: 'date',
+
+
+const cols = [{
+        label: 'Subject',
+        fieldName: 'Subject',
+        type: 'text',
+        sortable: true,
+        editable: true,
+    },
+    {
+        label: 'Due Date',
+        fieldName: 'ActivityDate',
+        type: 'Date',
+        type: 'date',
         typeAttributes: {
             year: 'numeric',
             month: 'numeric',
@@ -26,10 +37,17 @@ const cols = [
         editable: true,
         sortable: true,
         typeAttributes: {
-            options: { fieldName: 'picklistOptions' },
-            value: { fieldName: 'Status' },
+            options: {
+                fieldName: 'picklistOptions'
+            },
+            value: {
+                fieldName: 'Status'
+            },
             placeholder: 'Choose Status',
-            context: { fieldName: 'Id' }
+            context: {
+                fieldName: 'Id'
+            }
+
         }
     }
 ];
@@ -42,8 +60,7 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
     columns = cols;
     error;
     taskDataFull;
-
-    // Modal params
+    //modal params
     @track showNewTaskModal = false;
     @track newTaskSubject = '';
     @track newTaskDueDate = '';
@@ -52,25 +69,59 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
     sortedBy;
     sortedDirection;
 
+
     @wire(getTaskPriorityPicklistValues)
     wiredPicklistPriorityValues(result) {
         if (result.data) {
-            this.wiredTaskPriorityPicklist = result.data.map(value => ({ label: value, value }));
+            this.wiredTaskPriorityPicklist = result.data.map(value => ({
+                label: value,
+                value
+            }));
         } else {
             this.wiredTaskPriorityPicklist = undefined;
         }
     }
 
+    handleNewButton() {
+        this.showNewTaskModal = true;
+    }
+
+    handleSaveNewTaskModal(event) {
+        const newTask = event.detail;
+        // Add logic to create a new task
+        createTask({
+                newTask
+            })
+            .then(() => {
+                this.showToast('Success', 'New Task Created Successfully!', 'success', 'dismissable');
+                this.showNewTaskModal = false;
+                this.refresh();
+            })
+            .catch(error => {
+                this.showToast('Error', 'An error occurred while creating a new task.', 'error', 'dismissable');
+            });
+    }
+
+    handleCancelNewTaskModal() {
+        this.showNewTaskModal = false;
+    }
+
+
     @wire(getTaskStatusPicklistValues)
     wiredPicklistValues(result) {
         this.wiredPicklistValuesResult = result;
         if (result.data) {
-            this.wiredTaskStatusPicklist = result.data.map(value => ({ label: value, value }));
+            this.wiredTaskStatusPicklist = result.data.map(value => ({
+                label: value,
+                value
+            }));
             this.error = undefined;
         } else {
             this.wiredTaskStatusPicklist = undefined;
         }
     }
+
+
 
     @wire(getTasks)
     taskData(result) {
@@ -78,32 +129,49 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
         if (result.data) {
             let options = [];
             for (var key in this.wiredTaskStatusPicklist) {
-                options.push({ label: this.wiredTaskStatusPicklist[key].label, value: this.wiredTaskStatusPicklist[key].value });
+                options.push({
+                    label: this.wiredTaskStatusPicklist[key].label,
+                    value: this.wiredTaskStatusPicklist[key].value
+                });
             }
+            // Access result.data instead of result directly
             this.wiredTasksResult = result.data.map((record) => {
-                return { ...record, 'picklistOptions': options }
+                return {
+                    ...record,
+                    'picklistOptions': options
+                }
             });
             this.previousStoreData = JSON.parse(JSON.stringify(this.wiredTasksResult));
         } else if (result.error) {
             this.wiredTasksResult = undefined;
+            // Handle errors here
             console.error('Error fetching tasks: ' + result.error);
         }
     }
 
+    // Add this method to handle sorting
     handleSort(event) {
-        const { fieldName, sortDirection } = event.detail;
+        const {
+            fieldName,
+            sortDirection
+        } = event.detail;
+        // Update the sortedBy and sortedDirection properties
         this.sortedBy = fieldName;
         this.sortedDirection = sortDirection;
 
+        // Clone the data to a new array for sorting
         let sortedData = [...this.wiredTasksResult];
 
+        // Implement sorting logic based on the column
         if (fieldName === 'Subject') {
+            // Sort by Name (Subject)
             sortedData.sort((a, b) => {
                 const nameA = a.Subject.toUpperCase();
                 const nameB = b.Subject.toUpperCase();
                 return sortDirection === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
             });
         } else if (fieldName === 'Status') {
+            // Sort by Status
             sortedData.sort((a, b) => {
                 const statusA = a.Status.toUpperCase();
                 const statusB = b.Status.toUpperCase();
@@ -111,14 +179,20 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
             });
         }
 
+        // Update the original data with the sorted data
         this.wiredTasksResult = sortedData;
+
+        // Optionally, you can refresh the table or handle sorting in a different way based on your needs
         this.refresh();
     }
+
 
     updateDraftValues(updateItem) {
         let draftValueChanged = false;
         let copyDraftValues = [...this.draftValues];
-
+        //store changed value to do operations
+        //on save. This will enable inline editing &
+        //show standard cancel & save button
         copyDraftValues.forEach(item => {
             if (item.Id === updateItem.Id) {
                 for (let field in updateItem) {
@@ -134,17 +208,20 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
             this.draftValues = [...copyDraftValues, updateItem];
         }
     }
-
+    //handler to handle cell changes & update values in draft values
     handleCellChange(event) {
+        //this.updateDraftValues(event.detail.draftValues[0]);
         let draftValues = event.detail.draftValues;
         draftValues.forEach(ele => {
             this.updateDraftValues(ele);
-        });
+        })
     }
 
     handleSave() {
+        // Show spinner to indicate that the save operation is in progress
         this.showSpinner = true;
 
+        // Extract draft values and prepare them for saving
         const recordsToSave = this.draftValues.map((draft) => {
             return {
                 Id: draft.Id,
@@ -154,34 +231,41 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
         });
 
         if (recordsToSave.length > 0) {
-            updateTasksInlineEdit({ tasksToUpdate: recordsToSave })
+            // Call Apex method to update tasks
+            updateTasksInlineEdit({
+                    tasksToUpdate: recordsToSave
+                })
                 .then((result) => {
                     if (!result) {
                         this.showToast('Success', 'Changes saved successfully!', 'success', 'dismissable');
-                        this.draftValues = [];
+                        this.draftValues = []; // Clear draft values after successful save
                         this.refresh();
                     } else {
                         this.showToast('Error', result, 'error', 'dismissable');
                     }
                 })
                 .catch((error) => {
-                    console.error('Error updating tasks:', error);
                     this.showToast('Error', 'An error occurred while saving changes.', 'error', 'dismissable');
                 })
                 .finally(() => {
+                    // Hide the spinner after the save operation is complete
                     this.showSpinner = false;
                 });
         } else {
+            // Hide the spinner if there are no changes to save
             this.showSpinner = false;
             this.showToast('Info', 'No changes to save.', 'info', 'dismissable');
         }
     }
 
+
     handleCancel(event) {
+        //remove draftValues & revert data changes
         this.wiredTasksResult = JSON.parse(JSON.stringify(this.previousStoreData));
         this.draftValues = [];
         this.refresh();
     }
+
 
     showToast(title, message, variant, mode) {
         const evt = new ShowToastEvent({
@@ -192,6 +276,7 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
         });
         this.dispatchEvent(evt);
     }
+    // This function is used to refresh the table once data updated
 
     async refresh() {
         this.showSpinner = true;
@@ -207,20 +292,26 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
             });
     }
 
+
     handleRowSelection(event) {
         this.selectedRows = event.detail.selectedRows;
     }
 
     handleSelectedRows() {
+        // Call Apex method to update selected tasks to Completed
         if (this.selectedRows.length > 0) {
             this.updateTaskStatusToCompleted(this.selectedRows.map(row => row.Id));
         } else {
+            // Show a toast if no rows are selected
             this.showToast('Info', 'No rows selected.', 'info', 'dismissable');
         }
     }
 
     updateTaskStatusToCompleted(taskIds) {
-        updateTaskStatusToCompleted({ taskIds })
+        // Call the Apex method to update task statuses to Completed
+        updateTaskStatusToCompleted({
+                taskIds
+            })
             .then(() => {
                 this.showToast('Success', 'Selected records updated to Completed.', 'success', 'dismissable');
                 this.refresh();
@@ -230,4 +321,5 @@ export default class CustomTaskDatatable extends NavigationMixin(LightningElemen
                 this.showToast('Error', 'An error occurred while updating records.', 'error', 'dismissable');
             });
     }
+
 }
