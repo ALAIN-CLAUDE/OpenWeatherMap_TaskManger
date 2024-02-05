@@ -1,9 +1,9 @@
 /**
- * @description       : 
+ * @description       :This is used to schedule the batch for making callout
  * @author            : alainclaudebe@outlook.com
  * @group             : 
- * @last modified on  : 04-02-2024
- * @last modified by  : alainclaudebe@outlook.com
+ * @last modified on  : 02-05-2024
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 
 global class OpenWeatherMapBatchScheduler implements Schedulable {

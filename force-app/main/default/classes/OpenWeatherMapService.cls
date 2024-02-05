@@ -1,9 +1,9 @@
 /**
- * @description       : 
+ * @description       : this class is used to call the OpenWeatherMapService 
  * @author            : alainclaudebe@outlook.com
  * @group             : 
  * @last modified on  : 02-04-2024
- * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @last modified by  : alainclaudebe@outlook.com
 **/
 
 public class OpenWeatherMapService {

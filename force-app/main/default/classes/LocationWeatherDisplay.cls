@@ -1,9 +1,9 @@
 /**
- * @description       : 
+ * @description       : This class is used to display latest weather record on lwc
  * @author            : alainclaudebe@outlook.com
  * @group             : 
- * @last modified on  : 04-02-2024
- * @last modified by  : alainclaudebe@outlook.com
+ * @last modified on  : 02-05-2024
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 
 public with sharing class LocationWeatherDisplay {

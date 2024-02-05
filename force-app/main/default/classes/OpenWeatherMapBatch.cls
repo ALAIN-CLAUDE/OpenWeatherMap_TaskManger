@@ -1,9 +1,9 @@
 /**
- * @description       : 
+ * @description       :This is a batch apex used to get location weather data based on business decided frequency
  * @author            : alainclaudebe@outlook.com
  * @group             : 
- * @last modified on  : 04-02-2024
- * @last modified by  : alainclaudebe@outlook.com
+ * @last modified on  : 02-05-2024
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 
 global class OpenWeatherMapBatch implements Database.Batchable<SObject>, Database.AllowsCallouts {
