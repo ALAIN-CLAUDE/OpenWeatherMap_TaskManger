@@ -23,6 +23,11 @@ The Task Manager Lightning Web Component is a Salesforce component designed to h
 1. Deploy the Lightning Web Component to your Salesforce org.
     - Use Salesforce CLI or deploy through the Setup UI.
     - Example CLI command: `sfdx force:source:deploy -p force-app/main/default/lwc/TaskManager -u yourTargetOrgAlias`
+    - Alternatively , you can use github desktop as on the image below to open the repo, right click on the package.xml file within manifest folder and  deploy into your org. NOTE: You must ensure you first deploy the custom objects separartely or create them in your org,  before deploying the rest of the types and their members.
+    - ![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/6e9ee886-2929-45b0-9274-da971dadaffb)
+
+    - ![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/667d1f33-ba79-46bb-b81c-202ca727fbe6)
+
 
 2. Add the "TaskManager" component to the Home page layout.
     - Navigate to Setup > Object Manager > Home Page.
