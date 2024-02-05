@@ -4,6 +4,9 @@ This repository holds implementation for integrating salesforce with OpenWeather
 ![image](https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/94ddc055-3724-4a55-ac58-22740c1d2f98)
 
 
+https://github.com/ALAIN-CLAUDE/OpenWeatherMap_TaskManger/assets/63712848/f76d1420-66e3-441b-a00d-ea5a3a6c639d
+
+
 ## Overview
 
 The Task Manager Lightning Web Component is a Salesforce component designed to help users manage their tasks efficiently. It allows users to view, mark tasks as completed, and create new tasks directly from the Salesforce Home page. The component follows Salesforce Lightning Design System (SLDS) guidelines for a consistent and user-friendly experience.
